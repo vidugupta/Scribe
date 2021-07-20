@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { AuthenticationService } from '../authentication.service';
 
 
 @Component({
@@ -12,7 +11,7 @@ import 'firebase/auth';
 export class SignUpComponent implements OnInit {
 
   myForm: FormGroup;
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, public authService: AuthenticationService) {
     this.myForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -45,14 +44,9 @@ export class SignUpComponent implements OnInit {
     let firstName: string = signupform.value.firstName;
     let lastName: string = signupform.value.lastName;
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((response) =>
+    this.authService.signup(email, password, firstName, lastName).then(() =>
     {
-      console.log(response);
-
-      response.user?.updateProfile({
-        displayName: firstName + " " + lastName,
-        photoURL: ""
-      })
+      // this.message="You have been signed up successfully. Please login";
     }).catch((error) =>{
       console.log(error);
     }) 

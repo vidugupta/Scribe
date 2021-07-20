@@ -8,6 +8,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 let firebaseConfig = {
   apiKey: "AIzaSyAkEDl3WOv9GH7DgwQqy0QO57ApJauuLgQ",
@@ -26,7 +27,8 @@ firebase.initializeApp(firebaseConfig);
   declarations: [
     AppComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
