@@ -25,13 +25,11 @@ export class AuthenticationService {
         photoURL: "https://api.adorable.io/avatars" + randomNumber
         }).then(()=>{
           resolve(void Promise);
-        }).catch((error)
-        => {
+        }).catch((error) => {
           reject(error);
         })
 
-      }).catch((error
-      => {
+      }).catch((error) => {
         reject(error);
       })
     })
