@@ -10,6 +10,9 @@ import 'firebase/auth';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CapitalizePipe } from './capitalize.pipe';
+import { MenuComponent } from './menu/menu.component';
+import { MyblogsComponent } from './myblogs/myblogs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 let firebaseConfig = {
   apiKey: "AIzaSyAkEDl3WOv9GH7DgwQqy0QO57ApJauuLgQ",
@@ -30,7 +33,10 @@ firebase.initializeApp(firebaseConfig);
     SignUpComponent,
     LoginComponent,
     HomeComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    MenuComponent,
+    MyblogsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
