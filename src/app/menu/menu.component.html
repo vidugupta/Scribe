@@ -22,7 +22,7 @@
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item right" routerLinkActive="active" data-toggle="collapse"
-                data-target=".navbar-collapse">
+                data-target=".navbar-collapse" *ngIf="!loggedIn">
                 <button class="btn btn-outline-light px-5" routerLink="/login">Login</button>
             </li>
             <li class="nav-item right" *ngIf="loggedIn">

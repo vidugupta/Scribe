@@ -22,7 +22,7 @@ export class AuthenticationService {
 
       Response.user?.updateProfile({
         displayName: first_name + " " + last_name,
-        photoURL: "https://api.adorable.io/avatars" + randomNumber
+        photoURL: "https://robohash.org/" + randomNumber
         }).then(()=>{
           resolve(void Promise);
         }).catch((error) => {

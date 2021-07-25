@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-menu',
@@ -6,12 +8,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  loggedIn: boolean=false;
-  constructor() { }
 
-  logout() {}
+  loggedIn: boolean=false;
+  user: any;
+
+  constructor() {
+    this.user = firebase.auth().currentUser;
+    if(this.user){
+      this.loggedIn = true;
+    } else{
+      this.loggedIn = false;
+    }
+
+    firebase.auth().onAuthStateChanged((user)=>{
+      this.user = user;
+      if(this.user){
+        this.loggedIn = true;
+      } else{
+        this.loggedIn = false;
+      }
+    })
+
+   }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    firebase.auth().signOut();
   }
 
 }
