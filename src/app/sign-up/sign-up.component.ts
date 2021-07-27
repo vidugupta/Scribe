@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
-
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,7 +10,7 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+  message: string  = "";
   myForm: FormGroup;
   constructor(public fb: FormBuilder, public authService: AuthenticationService) {
     this.myForm = this.fb.group({
@@ -44,9 +45,20 @@ export class SignUpComponent implements OnInit {
     let firstName: string = signupform.value.firstName;
     let lastName: string = signupform.value.lastName;
 
-    this.authService.signup(email, password, firstName, lastName).then(() =>
+    this.authService.signup(email, password, firstName, lastName).then((user: any) =>
     {
-      // this.message="You have been signed up successfully. Please login";
+      
+      firebase.firestore().collection("users").doc(user.uid).set({
+        firstName: signupform.value.firstName,
+        lastName: signupform.value.lastName,
+        email: signupform.value.email,
+        photoURL: user.photoURL,
+        interests: "",
+        bio: "",
+        hobbies: ""
+      }).then(()=>{
+        this.message="You have been signed up successfully. Please login";
+      })
     }).catch((error) =>{
       console.log(error);
     }) 

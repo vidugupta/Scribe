@@ -13,6 +13,13 @@ import { CapitalizePipe } from './capitalize.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { MyblogsComponent } from './myblogs/myblogs.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CreateComponent } from './create/create.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
+import { PostComponent } from './post/post.component';
+import { ViewComponent } from './view/view.component';
+import { CommentsComponent } from './comments/comments.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component'
 
 let firebaseConfig = {
   apiKey: "AIzaSyAkEDl3WOv9GH7DgwQqy0QO57ApJauuLgQ",
@@ -36,13 +43,20 @@ firebase.initializeApp(firebaseConfig);
     CapitalizePipe,
     MenuComponent,
     MyblogsComponent,
-    ProfileComponent
+    ProfileComponent,
+    CreateComponent,
+    PostComponent,
+    ViewComponent,
+    CommentsComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
